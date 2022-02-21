@@ -1,18 +1,16 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ArticleModel {
+  const ArticleModel({
+    required this.id,
+    required this.authorId,
+    required this.content,
+  });
 
-part 'article_model.freezed.dart';
-part 'article_model.g.dart';
+  final int id;
+  final int authorId;
+  final String content;
 
-@freezed
-class ArticleModel with _$ArticleModel {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  factory ArticleModel(
-    int id,
-    int authorId,
-    String content,
-    String picture,
-  ) = _ArticleModel;
-
-  factory ArticleModel.fromJson(Map<String, dynamic> json) =>
-      _$ArticleModelFromJson(json);
+  ArticleModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        authorId = json['author_id'],
+        content = json['content'];
 }
